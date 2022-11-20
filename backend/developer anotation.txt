@@ -2,3 +2,9 @@ springConfig working
 
 import sql create e seed
 
+
+pagination with Pageable
+
+requisicao com 2 argumetos de pesquisa exemplo   
+http://localhost:8080/sales?minDate=2022-01-01&maxDate=2022-03-31
+
