@@ -31,16 +31,19 @@ public class SmsService {
 
 	public void sendSms(Long saleId) {
 		
-		Sale sale = saleRepository.findById(saleId).get();
+        Sale sale = saleRepository.findById(saleId).get();
+        
+        String date = sale.getDate().getMonth() + "/" + sale.getDate().getYear();
 		
-		String msg = "vendedor" + sale.getSellerName();
+		String msg = "vendedor" + sale.getSellerName() + "the greatest" + date 
+				+"com um total de R$" + String.format("%.2f", sale.getAmount());
 
 		Twilio.init(twilioSid, twilioKey);
 
 		PhoneNumber to = new PhoneNumber(twilioPhoneTo);
 		PhoneNumber from = new PhoneNumber(twilioPhoneFrom);
 
-		Message message = Message.creator(to, from, "teste").create();
+		Message message = Message.creator(to, from, msg).create();
 
 		System.out.println(message.getSid());
 	}
